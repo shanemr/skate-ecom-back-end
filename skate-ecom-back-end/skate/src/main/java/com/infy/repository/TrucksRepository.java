@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.infy.dto.TrucksDTO;
 import com.infy.entity.Trucks;
 
-public interface TrucksRepository extends CrudRepository<Trucks, Integer> {
+public interface TrucksRepository extends CrudRepository<Trucks, String> {
 
 	public List<Trucks> findByBrandName(String brandName);
 	

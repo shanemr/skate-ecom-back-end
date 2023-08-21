@@ -1,17 +1,19 @@
 package com.infy.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import com.infy.dto.TrucksDTO;
 
 @Entity
 public class Trucks {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer brandId;
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String brandId;
 	private String brandName;
 	private String truckType;
 	private Integer quantity;
@@ -22,7 +24,7 @@ public class Trucks {
 		
 	}
 	
-	public Trucks(Integer brandId, String brandName, String truckType, Integer quantity, Double price, String imageUrl) {
+	public Trucks(String brandId, String brandName, String truckType, Integer quantity, Double price, String imageUrl) {
 		this.brandId = brandId;
 		this.brandName = brandName;
 		this.truckType = truckType;
@@ -41,10 +43,10 @@ public class Trucks {
 	}
 	
 	
-	public Integer getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
-	public void setBrandId(Integer brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 	public String getBrandName() {

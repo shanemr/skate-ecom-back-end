@@ -20,7 +20,7 @@ public interface WheelsService {
 	
 	public Integer addWheels(WheelsDTO wheelsDTO, Integer quantity) throws SkateShopException;
 	
-	public Integer addNewWheels(WheelsDTO wheelsDTO) throws SkateShopException;
+	public String addNewWheels(WheelsDTO wheelsDTO) throws SkateShopException;
 	
 	public Integer purchaseWheels(WheelsDTO wheelsDTO, Integer quantity) throws SkateShopException;
 	

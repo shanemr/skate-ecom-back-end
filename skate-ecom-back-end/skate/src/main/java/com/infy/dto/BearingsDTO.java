@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import com.infy.entity.Bearings;
 
 public class BearingsDTO {
-	private Integer brandId;
+	private String brandId;
 	private String brandName;
 	private String bearingsType;
 	private Integer quantity;
@@ -15,7 +15,7 @@ public class BearingsDTO {
 	
 	public BearingsDTO() {}
 	
-	public BearingsDTO(Integer brandId, String brandName, String bearingsType, Integer quantity, Double price, String imageUrl) {
+	public BearingsDTO(String brandId, String brandName, String bearingsType, Integer quantity, Double price, String imageUrl) {
 		this.brandId = brandId;
 		this.brandName = brandName;
 		this.bearingsType = bearingsType;
@@ -35,10 +35,10 @@ public class BearingsDTO {
 				);
 		return bearingsDTO;
 	}
-	public Integer getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
-	public void setBrandId(Integer brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 	public String getBrandName() {

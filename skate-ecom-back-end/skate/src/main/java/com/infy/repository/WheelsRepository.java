@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.infy.dto.WheelsDTO;
 import com.infy.entity.Wheels;
 
-public interface WheelsRepository extends CrudRepository<Wheels, Integer>{
+public interface WheelsRepository extends CrudRepository<Wheels, String>{
 
 	public List<Wheels> findByBrandName(String brandName);
 	

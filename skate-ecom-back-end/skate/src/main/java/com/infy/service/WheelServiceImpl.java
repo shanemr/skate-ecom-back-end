@@ -82,7 +82,7 @@ public class WheelServiceImpl implements WheelsService{
 	
 
 	@Override
-	public Integer addNewWheels(WheelsDTO wheelsDTO) throws SkateShopException {
+	public String addNewWheels(WheelsDTO wheelsDTO) throws SkateShopException {
 		// TODO Auto-generated method stub
 		if(wheelsRepository.existsById(wheelsDTO.getBrandId())) {
 			throw new SkateShopException("Service.WHEELS_BRAND_ALREADY_EXISTS");

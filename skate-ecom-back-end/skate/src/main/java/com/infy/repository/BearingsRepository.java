@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.infy.entity.Bearings;
 
-public interface BearingsRepository extends CrudRepository<Bearings, Integer>{
+public interface BearingsRepository extends CrudRepository<Bearings, String>{
 
 	public List<Bearings> findByBrandName(String brandName);
 	

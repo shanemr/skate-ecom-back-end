@@ -67,7 +67,7 @@ public class TrucksServiceImpl implements TrucksService{
 	}
 
 	@Override
-	public Integer addNewTrucksType(TrucksDTO trucksDTO) throws SkateShopException {
+	public String addNewTrucksType(TrucksDTO trucksDTO) throws SkateShopException {
 		// TODO Auto-generated method stub
 //		if(trucksRepository.findByBrandName(trucksDTO.getBrandName()) != null) {
 //			throw new SkateShopException("Service.TRUCKS_ALREADY_EXISTS");

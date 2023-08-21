@@ -10,7 +10,7 @@ import com.infy.dto.DeckColor;
 import com.infy.entity.Deck;
 
 @Repository
-public interface DeckRepository extends CrudRepository<Deck, Integer>{
+public interface DeckRepository extends CrudRepository<Deck, String>{
 
 	public List<Deck> findByBrandName(String brandName);
 	

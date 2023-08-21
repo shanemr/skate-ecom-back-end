@@ -1,12 +1,12 @@
 package com.infy.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import com.infy.dto.DeckColor;
 import com.infy.dto.DeckDTO;
@@ -15,8 +15,8 @@ import com.infy.dto.DeckDTO;
 @Table(name = "deck")
 public class Deck {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer brandId;
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String brandId;
 	private String brandName;
 	@Enumerated(EnumType.STRING)
 	private DeckColor color;
@@ -29,7 +29,7 @@ public class Deck {
 		
 	}
 	
-	public Deck(Integer brandId, String brandName, DeckColor color, Double size, Integer quantity,
+	public Deck(String brandId, String brandName, DeckColor color, Double size, Integer quantity,
 			Double price, String imageUrl) {
 		this.brandId = brandId;
 		this.brandName = brandName;
@@ -51,10 +51,10 @@ public class Deck {
 		return deck;
 	}
 	
-	public Integer getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
-	public void setBrandId(Integer brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 	public String getBrandName() {

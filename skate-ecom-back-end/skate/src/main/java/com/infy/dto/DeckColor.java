@@ -1,5 +1,5 @@
 package com.infy.dto;
 
 public enum DeckColor {
-	BLUE,BLACK,RED, YELLOW
+	BLUE,BLACK,RED,YELLOW,WHITE,COLLAGE
 }

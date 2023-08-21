@@ -1,7 +1,7 @@
 package com.infy.dto;
 
 public class DeckDTO {
-	private Integer brandId;
+	private String brandId;
 	private String brandName;
 	private DeckColor color;
 	private Double size;
@@ -9,7 +9,7 @@ public class DeckDTO {
 	private Double price;
 	private String imageUrl;
 	
-	public DeckDTO(Integer brandId, String brandName, DeckColor color, Double size, Integer quantity,
+	public DeckDTO(String brandId, String brandName, DeckColor color, Double size, Integer quantity,
 			Double price, String imageUrl) {
 		this.brandId = brandId;
 		this.brandName = brandName;
@@ -24,10 +24,10 @@ public class DeckDTO {
 	
 	
 	
-	public Integer getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
-	public void setBrandId(Integer brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 	public String getBrandName() {

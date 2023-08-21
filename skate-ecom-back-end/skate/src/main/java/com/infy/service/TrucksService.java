@@ -15,7 +15,7 @@ public interface TrucksService {
 	
 	public Integer updateTrucksQuantity(TrucksDTO trucks, Integer quantity) throws SkateShopException;
 	
-	public Integer addNewTrucksType(TrucksDTO trucks) throws SkateShopException;
+	public String addNewTrucksType(TrucksDTO trucks) throws SkateShopException;
 	
 	public Integer purchaseTrucks(TrucksDTO trucks, Integer quantity) throws SkateShopException;
 	

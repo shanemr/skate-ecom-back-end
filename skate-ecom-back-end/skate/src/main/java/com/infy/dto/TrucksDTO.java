@@ -3,7 +3,7 @@ package com.infy.dto;
 import com.infy.entity.Trucks;
 
 public class TrucksDTO {
-	private Integer brandId;
+	private String brandId;
 	private String brandName;
 	private String truckType;
 	private Integer quantity;
@@ -15,7 +15,7 @@ public class TrucksDTO {
 		
 	}
 	
-	public TrucksDTO(Integer brandId, String brandName, String truckType, Integer quantity, Double price, String imageUrl) {
+	public TrucksDTO(String brandId, String brandName, String truckType, Integer quantity, Double price, String imageUrl) {
 		this.brandId = brandId;
 		this.brandName = brandName;
 		this.truckType = truckType;
@@ -36,10 +36,10 @@ public class TrucksDTO {
 		return trucksDTO;
 	}
 	
-	public Integer getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
-	public void setBrandId(Integer brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 	public String getBrandName() {

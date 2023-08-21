@@ -15,11 +15,14 @@ import com.infy.service.TrucksService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
+//@EnableWebSecurity
 public class SkateApplication implements CommandLineRunner{
-
+	
+	
 	
 	@Autowired
 	private DeckService skateboardService;
@@ -49,9 +52,9 @@ public class SkateApplication implements CommandLineRunner{
 		//getAllSkateBoardsByColor();
 		
 		// Bearings service method tests
-		//addBearings();
+		addBearings();
 		//getAllBearings();
-		getAllBrandNames();
+		//getAllBrandNames();
 		//getBearingsByBrand();
 		//getBearingsQuantityInStock();
 		//updateBearingsQuantity();
@@ -104,7 +107,7 @@ public class SkateApplication implements CommandLineRunner{
 	
 	public void updateDeckQuantity() {
 		DeckDTO deck = new DeckDTO();
-		deck.setBrandId(1);
+		deck.setBrandId("5-TEST");
 		deck.setQuantity(5);
 		try {
 			Integer quantity = skateboardService.updateDeckQuantity(deck, deck.getQuantity());
@@ -186,11 +189,12 @@ public class SkateApplication implements CommandLineRunner{
 	public void addBearings() {
 		BearingsDTO bearings = new BearingsDTO();
 		bearings.setBrandName("Indy");
+		bearings.setBearingsType("TEST");
 		bearings.setPrice(45.00);
 		bearings.setQuantity(10);
 		
 		try {
-			Integer bearingsId = bearingsService.addNewBearings(bearings, bearings.getQuantity());
+			String bearingsId = bearingsService.addNewBearings(bearings, bearings.getQuantity());
 			System.out.println("Bearings added with brandId: " + bearingsId);
 		} catch(Exception e) {
 			System.out.println(environment.getProperty(e.getMessage()));
@@ -222,7 +226,7 @@ public class SkateApplication implements CommandLineRunner{
 	
 	public void getBearingsQuantityInStock() {
 		BearingsDTO bearingsDTO = new BearingsDTO();
-		bearingsDTO.setBrandId(1);
+		bearingsDTO.setBrandId("5-TEST");
 		
 		try {
 			Integer bearingsQuantity = bearingsService.getQuantityInStock(bearingsDTO);
@@ -234,7 +238,7 @@ public class SkateApplication implements CommandLineRunner{
 	
 	public void updateBearingsQuantity() {
 		BearingsDTO bearingsDTO = new BearingsDTO();
-		bearingsDTO.setBrandId(3);
+		bearingsDTO.setBrandId("5-TEST");
 		
 		try {
 			Integer bearingsQuantity = bearingsService.updateBearingsQuantity(bearingsDTO, 5);
@@ -247,7 +251,7 @@ public class SkateApplication implements CommandLineRunner{
 	
 	public void purchaseBearings() {
 		BearingsDTO bearingsDTO = new BearingsDTO();
-		bearingsDTO.setBrandId(1);
+		bearingsDTO.setBrandId("5-TEST");
 		try {
 			Integer bearingsQuantity = bearingsService.purchaseBearings(bearingsDTO, 5);
 			System.out.println("Bearings purchased! Amount in stock is now: " + bearingsQuantity);
@@ -283,7 +287,7 @@ public class SkateApplication implements CommandLineRunner{
 	
 	public void getTrucksInStock() {
 		TrucksDTO truckDTO = new TrucksDTO();
-		truckDTO.setBrandId(1);
+		truckDTO.setBrandId("5-TEST");
 		try {
 			Integer amount = trucksService.getQuantityInStock(truckDTO);
 			System.out.println("Trucks amount in stock: " + amount);
@@ -296,7 +300,7 @@ public class SkateApplication implements CommandLineRunner{
 	
 	public void updateTrucksQuantity() {
 		TrucksDTO truckDTO = new TrucksDTO();
-		truckDTO.setBrandId(1);
+		truckDTO.setBrandId("5-TEST");
 		try {
 			Integer amount = trucksService.updateTrucksQuantity(truckDTO, 5);
 			System.out.println("Trucks amount in stock: " + amount);
@@ -308,7 +312,7 @@ public class SkateApplication implements CommandLineRunner{
 	
 	public void purchaseTrucks() {
 		TrucksDTO truckDTO = new TrucksDTO();
-		truckDTO.setBrandId(1);
+		truckDTO.setBrandId("5-TEST");
 		try {
 			Integer amount = trucksService.purchaseTrucks(truckDTO, 5);
 			System.out.println("Trucks purchased! Trucks amount in stock: " + amount);

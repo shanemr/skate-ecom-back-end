@@ -71,12 +71,13 @@ public class BearingsServiceImpl implements BearingsService{
 	}
 
 	@Override
-	public Integer addNewBearings(BearingsDTO bearingsDTO, Integer quantity) throws SkateShopException {
+	public String addNewBearings(BearingsDTO bearingsDTO, Integer quantity) throws SkateShopException {
 		// TODO Auto-generated method stub
 //		if(bearingsRepository.findById(bearingsDTO.getBrandId()).isPresent()) {
 //			throw new SkateShopException("Service.BEARINGS_BRAND_ALREADY_EXISTS");
 //		}
 		Bearings bearings = Bearings.convertToEntity(bearingsDTO);
+		bearings.setBrandId(this.generateId(bearingsDTO));
 		
 		return bearingsRepository.save(bearings).getBrandId();
 	}
@@ -103,6 +104,14 @@ public class BearingsServiceImpl implements BearingsService{
 		// TODO Auto-generated method stub
 		List<String> brandNames = bearingsRepository.findAllBrandNames();
 		return brandNames;
+	}
+
+	@Override
+	public String generateId(BearingsDTO bearingsDTO) throws SkateShopException {
+		// TODO Auto-generated method stub
+		
+		String id = getAllBrandNames().size() + "-" + bearingsDTO.getBrandName() + "-" + bearingsDTO.getBearingsType();
+		return id;
 	}
 
 	

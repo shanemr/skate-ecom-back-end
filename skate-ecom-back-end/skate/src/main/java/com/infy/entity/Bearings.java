@@ -1,10 +1,10 @@
 package com.infy.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import com.infy.dto.BearingsDTO;
 
@@ -12,9 +12,8 @@ import com.infy.dto.BearingsDTO;
 @Table(name="bearings")
 public class Bearings {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer brandId;
-	
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String brandId;
 	private String brandName;
 	private String bearingsType;
 	private Integer quantity;
@@ -25,7 +24,7 @@ public class Bearings {
 		
 	}
 	
-	public Bearings(Integer brandId, String brandName, String bearingsType, Integer quantity, Double price, String imageUrl) {
+	public Bearings(String brandId, String brandName, String bearingsType, Integer quantity, Double price, String imageUrl) {
 		this.brandId = brandId;
 		this.brandName = brandName;
 		this.bearingsType = bearingsType;
@@ -43,10 +42,10 @@ public class Bearings {
 		bearings.setImageUrl(bearingsDTO.getImageUrl());
 		return bearings;
 	}
-	public Integer getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
-	public void setBrandId(Integer brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 	public String getBrandName() {

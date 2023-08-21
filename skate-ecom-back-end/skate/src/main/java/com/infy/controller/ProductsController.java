@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.infy.dto.BearingsDTO;
@@ -20,9 +22,10 @@ import com.infy.service.DeckService;
 import com.infy.service.TrucksService;
 import com.infy.service.WheelsService;
 
-@RestController("/")
-@CrossOrigin()
-public class Controller {
+@RestController()
+@RequestMapping("api")
+@CrossOrigin(origins = "*")
+public class ProductsController {
 
 	@Autowired
 	private DeckService deckService;
@@ -36,6 +39,11 @@ public class Controller {
 	@Autowired
 	private WheelsService wheelsService;
 	
+	@Autowired
+	//private PasswordEncoder passwordEncoder;
+	
+	
+	
 	@GetMapping("/allBrands")
 	public ResponseEntity<BrandsDTO> getAllBrands() throws SkateShopException{
 		List<String> deckNames = deckService.getAllBrandNames();
@@ -47,11 +55,13 @@ public class Controller {
 	}
 	
 	
+	
 	@GetMapping("/allDecks")
 	public ResponseEntity<List<DeckDTO>> getAllDecks() throws SkateShopException{
 		List<DeckDTO> deckDTOs = deckService.getAllSkateBoards();
 		return new ResponseEntity<List<DeckDTO>>(deckDTOs, HttpStatus.OK);
 	}
+	
 	
 	@GetMapping("/allTrucks")
 	public ResponseEntity<List<TrucksDTO>> getAllTrucks() throws SkateShopException{

@@ -18,9 +18,11 @@ public interface BearingsService {
 	
 	public Integer updateBearingsQuantity(BearingsDTO bearings, Integer quantity) throws SkateShopException;
 	
-	public Integer addNewBearings(BearingsDTO bearings, Integer quantity) throws SkateShopException;
+	public String addNewBearings(BearingsDTO bearings, Integer quantity) throws SkateShopException;
 	
 	public Integer purchaseBearings(BearingsDTO bearings, Integer quantity) throws SkateShopException;
 	
 	public List<String> getAllBrandNames() throws SkateShopException;
+	
+	public String generateId(BearingsDTO bearingsDTO) throws SkateShopException;
 }
