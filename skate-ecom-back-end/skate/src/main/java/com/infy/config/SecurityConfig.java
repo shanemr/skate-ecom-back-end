@@ -13,17 +13,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.infy.service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	
 	@Autowired
-	UserDetailsService userDetailsService;
+	CustomUserDetailsService userDetailsService;
 	
 //	@Autowired
 //	PasswordEncoder passwordEncoder;
@@ -31,38 +34,38 @@ public class SecurityConfig {
 	@Autowired
 	JwtAuthFilter jwtAuthFilter;
 	  
-	    @Bean
+	    @SuppressWarnings("removal")
+		@Bean
 	    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-	    	http.csrf(csfr -> csfr.disable()).authorizeHttpRequests(authorizeHttpRequests -> {
-                try {
-                    authorizeHttpRequests
-                    .requestMatchers("auth/**").permitAll()
-                            .requestMatchers("/api/**").permitAll()
-                            .anyRequest()
-                    		.authenticated()
-                    		.and()
-                    		 .sessionManagement(management -> management
-                                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                             .authenticationProvider(authenticationProvider())
-                             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-                            
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                    
-                }
-            }
-	    	);
+            http.cors(withDefaults()).csrf(csfr -> csfr.disable()).authorizeHttpRequests(authorizeHttpRequests -> {
+                        try {
+                            authorizeHttpRequests
+                                    .requestMatchers("auth/**").permitAll()
+                                    .requestMatchers("/api/**").permitAll()
+                                    .anyRequest()
+                                    .authenticated()
+                                    .and()
+                                    .sessionManagement(management -> management
+                                            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                    .authenticationProvider(authenticationProvider())
+                                    .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+
+                        }
+                    }
+            );
 	    	return http.build();
 		}
 	    
 	    
 	    @Bean
-	     AuthenticationProvider authenticationProvider() {
+	     AuthenticationProvider authenticationProvider(){
 	    	final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 	    	authenticationProvider.setUserDetailsService(userDetailsService);
 	    	authenticationProvider.setPasswordEncoder(passwordEncoder());
-	    	
 	    	
 	    	return authenticationProvider;
 	    }

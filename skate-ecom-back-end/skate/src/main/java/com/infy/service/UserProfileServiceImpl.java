@@ -1,10 +1,12 @@
 package com.infy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.infy.entity.UserProfile;
 import com.infy.repository.UserProfileRepository;
 
+@Service
 public class UserProfileServiceImpl implements UserProfileService{
 
 	

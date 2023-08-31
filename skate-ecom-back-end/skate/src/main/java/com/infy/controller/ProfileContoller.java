@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import com.infy.repository.UserProfileRepository;
 
 @RestController
 @RequestMapping("/profile")
+@CrossOrigin
 public class ProfileContoller {
 	
 	@Autowired
@@ -23,7 +25,7 @@ public class ProfileContoller {
 	@Autowired
 	UserProfileRepository userProfileRepository;
 	
-	@GetMapping()
+	@GetMapping("")
 	public ResponseEntity<UserProfileDTO> getProfileDetails(){
 		SecurityContext context = SecurityContextHolder.getContext();
 		String email = context.getAuthentication().getName();

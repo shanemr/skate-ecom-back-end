@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,9 +41,14 @@ public class AuthController {
 	@PostMapping("/authenticate")
 	public ResponseEntity<String> authenticate(@RequestBody UserDTO request){
 		System.out.println("request Sent");
-		authenticationManager.authenticate(
+		try {
+			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
 				);
+		} catch(BadCredentialsException e) {
+			return new ResponseEntity<String>("Email and/or password is invalid", HttpStatus.BAD_REQUEST);
+		}
+		
 		UserEntity userEntity =  userRepository.findByEmail(request.getEmail());
 		UserDetails user = new User(
 				userEntity.getEmail(),
