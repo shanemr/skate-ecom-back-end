@@ -8,5 +8,5 @@ import com.infy.dto.PurchasedItemDTO;
 
 
 public interface OrderService {
-	public Integer purchase(List<PurchasedItemDTO> itemsDTO, Double price, Date date, String email);
+	public Integer purchase(OrderDTO orderDTO);
 }

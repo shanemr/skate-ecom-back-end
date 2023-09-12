@@ -32,15 +32,6 @@ public class ProductsController {
 	
 	
 	
-	@GetMapping("/allBrands")
-	public ResponseEntity<String> getAllBrands() throws SkateShopException{
-		
-	
-		return new ResponseEntity<String>("hello", HttpStatus.OK);
-	}
-	
-	
-	
 	@GetMapping("/all")
 	public ResponseEntity<List<ProductDTO>> getAllProducts() throws SkateShopException{
 		List<ProductDTO> dtos = productService.getAllProducts();
@@ -48,9 +39,10 @@ public class ProductsController {
 	}
 	
 	
-	@GetMapping("/all/type")
-	public ResponseEntity<List<ProductDTO>> getAllProductsByType(@RequestParam("productType") String productType) throws SkateShopException{
-		List<ProductDTO> dtos = productService.getProductByType(productType);
+	@GetMapping("/all/category")
+	public ResponseEntity<List<ProductDTO>> getAllProductsByType(@RequestParam("category") String category) throws SkateShopException{
+		System.out.println("In get product by category api");
+		List<ProductDTO> dtos = productService.getProductByCategory(category);
 		return new ResponseEntity<List<ProductDTO>>(dtos, HttpStatus.OK);
 	}
 	

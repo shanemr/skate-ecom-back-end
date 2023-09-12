@@ -1,20 +1,20 @@
 package com.infy.dto;
 
+import com.infy.entity.Product;
 
 public class PurchasedItemDTO {
 	
 	private Integer orderId;
 	
-	private String itemId;
+	private ProductDTO product;
 	
 	private Integer qty;
 	
 	public PurchasedItemDTO() {};
 
-	public PurchasedItemDTO(Integer orderId, String itemId, Integer qty) {
+	public PurchasedItemDTO(ProductDTO product, Integer qty) {
 		super();
-		this.orderId = orderId;
-		this.itemId = itemId;
+		this.product = product;
 		this.qty = qty;
 	}
 
@@ -26,12 +26,14 @@ public class PurchasedItemDTO {
 		this.orderId = orderId;
 	}
 
-	public String getItemId() {
-		return itemId;
+	
+
+	public ProductDTO getProduct() {
+		return product;
 	}
 
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
+	public void setProduct(ProductDTO product) {
+		this.product = product;
 	}
 
 	public Integer getQty() {

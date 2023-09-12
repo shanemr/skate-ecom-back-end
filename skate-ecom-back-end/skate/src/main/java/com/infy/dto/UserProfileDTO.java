@@ -2,9 +2,12 @@ package com.infy.dto;
 
 import java.util.List;
 
+import com.infy.entity.BillAddress;
 import com.infy.entity.Order;
+import com.infy.entity.ShipAddress;
 import com.infy.entity.UserEntity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -18,7 +21,12 @@ public class UserProfileDTO {
 	
 	private String lastName;
 	
-	private String address;
+	
+	private List<ShipAddressDTO> shipAddress;
+	
+	
+	private List<BillAddressDTO> billAddress;
+	
 	
 	private String phoneNum;
 	
@@ -29,12 +37,11 @@ public class UserProfileDTO {
 	public UserProfileDTO() {}
 	
 	
-	public UserProfileDTO(String email, String firstName, String lastName, String address, String phoneNum
+	public UserProfileDTO(String email, String firstName, String lastName, String phoneNum
 			) {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
 		this.phoneNum = phoneNum;
 	}
 
@@ -62,13 +69,27 @@ public class UserProfileDTO {
 		this.lastName = lastName;
 	}
 
-	public String getAddress() {
-		return address;
+	
+
+	public List<ShipAddressDTO> getShipAddress() {
+		return shipAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+
+	public void setShipAddress(List<ShipAddressDTO> shipAddress) {
+		this.shipAddress = shipAddress;
 	}
+
+
+	public List<BillAddressDTO> getBillAddress() {
+		return billAddress;
+	}
+
+
+	public void setBillAddress(List<BillAddressDTO> billAddress) {
+		this.billAddress = billAddress;
+	}
+
 
 	public String getPhoneNum() {
 		return phoneNum;

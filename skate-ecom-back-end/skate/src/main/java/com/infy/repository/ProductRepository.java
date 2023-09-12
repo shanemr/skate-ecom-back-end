@@ -9,8 +9,8 @@ import com.infy.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
-	@Query("SELECT p FROM Product p WHERE type like :type")
-	public List<Product> findProductByType(String type);
+	@Query("SELECT p FROM Product p WHERE category like :category")
+	public List<Product> findProductByType(String category);
 	
 	public List<Product> findProductByBrandName(String brandName);
 	

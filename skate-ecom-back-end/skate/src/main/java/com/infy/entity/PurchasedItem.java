@@ -14,6 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
@@ -28,22 +29,21 @@ public class PurchasedItem {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne
+	@ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
 	private Integer qty;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="order_id", nullable=false)
 	private Order order;
 	
 	public PurchasedItem() {};
 
-	public PurchasedItem(Integer id, Integer qty, Order order) {
+	public PurchasedItem(Integer id, Integer qty) {
 		this.id = id;
 		this.qty = qty;
-		this.order = order;
 	}
 
 	
@@ -55,6 +55,15 @@ public class PurchasedItem {
 		this.qty = qty;
 	}
 	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 	public void setOrder(Order order) {
 		this.order = order;
 	}
@@ -62,7 +71,5 @@ public class PurchasedItem {
 	public Order getOrder() {
 		return this.order;
 	}
-	
-	
 	
 }

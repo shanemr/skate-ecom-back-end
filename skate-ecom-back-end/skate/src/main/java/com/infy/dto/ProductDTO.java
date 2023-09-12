@@ -3,12 +3,13 @@ package com.infy.dto;
 import com.infy.entity.Product;
 
 public class ProductDTO {
+	private Integer productId;
 	private String brandName;
 	private ProductColor color;
 	private Double price;
 	private Double size;
 	private String imageUrl;
-	private String type;
+	private String category;
 	private Double rating;
 	private String description;
 	private String truckType;
@@ -21,12 +22,23 @@ public class ProductDTO {
 		this.color = color;
 		this.price = price;
 		this.imageUrl = imageUrl;
-		this.type = type;
+		this.category = type;
 		this.rating = rating;
 		this.description = description;
 		this.truckType = truckType;
 		this.size = size;
 	}
+	
+	
+	
+	public Integer getProductId() {
+		return productId;
+	}
+	
+	public void setId(Integer id) {
+		this.productId = id;
+	}
+
 	public String getBrandName() {
 		return brandName;
 	}
@@ -52,10 +64,10 @@ public class ProductDTO {
 		this.imageUrl = imageUrl;
 	}
 	public String getType() {
-		return type;
+		return category;
 	}
 	public void setType(String type) {
-		this.type = type;
+		this.category = type;
 	}
 	public Double getRating() {
 		return rating;

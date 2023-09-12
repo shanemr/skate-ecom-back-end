@@ -40,7 +40,6 @@ public class AuthController {
 	
 	@PostMapping("/authenticate")
 	public ResponseEntity<String> authenticate(@RequestBody UserDTO request){
-		System.out.println("request Sent");
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())

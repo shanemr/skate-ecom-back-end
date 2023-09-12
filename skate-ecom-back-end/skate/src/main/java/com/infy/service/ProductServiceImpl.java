@@ -28,23 +28,25 @@ public class ProductServiceImpl implements ProductService{
 		
 		products.forEach(p ->{
 			ProductDTO dto = ProductDTO.convertToDTO(p);
+			dto.setId(p.getId());
 			dtos.add(dto);
 		});
 		return dtos;
 	}
 
 	@Override
-	public List<ProductDTO> getProductByType(String type) throws SkateShopException {
+	public List<ProductDTO> getProductByCategory(String category) throws SkateShopException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-		List<Product> products = productRepository.findProductByType(type);
+		List<Product> products = productRepository.findProductByType(category);
 		if(products.isEmpty()) {
-			throw new SkateShopException("No prodcuts of type " + type + " found");
+			throw new SkateShopException("No prodcuts of type " + category + " found");
 		}
 		List<ProductDTO> dtos = new ArrayList<ProductDTO>();
 				
 		products.forEach(p ->{
 			ProductDTO dto = ProductDTO.convertToDTO(p);
+			dto.setId(p.getId());
 			dtos.add(dto);
 		});
 		return dtos;

@@ -13,7 +13,7 @@ public interface ProductService {
 	
 	public List<ProductDTO> getAllProducts() throws SkateShopException;
 	
-	public List<ProductDTO> getProductByType(String type) throws SkateShopException;
+	public List<ProductDTO> getProductByCategory(String category) throws SkateShopException;
 	
 	public List<ProductDTO> getProductByBrandName(String brandName) throws SkateShopException;
 	

@@ -2,10 +2,14 @@ package com.infy.entity;
 
 import java.util.List;
 
+import com.infy.dto.PaymentDTO;
 import com.infy.dto.UserProfileDTO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -18,14 +22,19 @@ import jakarta.persistence.Table;
 public class UserProfile {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String email;
 	
-
 	private String firstName;
 	
 	private String lastName;
 	
-	private String address;
+	@OneToMany(mappedBy="userProfile", cascade = CascadeType.ALL)
+	private List<ShipAddress> shipAddress;
+	
+	@OneToMany(mappedBy="userProfile", cascade = CascadeType.ALL)
+	private List<BillAddress> billAddress;
+	
 	
 	private String phoneNum;
 	
@@ -35,16 +44,18 @@ public class UserProfile {
 	@OneToOne(mappedBy = "userProfileDetails")
 	private UserEntity userEntity;
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private List<Payment> payment;
+	
 	public UserProfile() {}
 	
 	
-	public UserProfile(String email, String firstName, String lastName, String address, String phoneNum
+	public UserProfile(String email, String firstName, String lastName, String phoneNum
 			) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.address = address;
 		this.phoneNum = phoneNum;
 	}
 
@@ -72,13 +83,7 @@ public class UserProfile {
 		this.lastName = lastName;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
+	
 
 	public String getPhoneNum() {
 		return phoneNum;
@@ -95,11 +100,36 @@ public class UserProfile {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+	public List<ShipAddress> getShipAddress() {
+		return shipAddress;
+	}
+
+
+	public void setShipAddress(List<ShipAddress> shipAddress) {
+		this.shipAddress = shipAddress;
+	}
+
+
+	public List<BillAddress> getBillAddress() {
+		return billAddress;
+	}
+
+
+	public void setBillAddress(List<BillAddress> billAddress) {
+		this.billAddress = billAddress;
+	}
+
+
 	
 	
 public static UserProfileDTO convertToUserProfileDTO(UserProfile entity) {
-		UserProfileDTO dto = new UserProfileDTO(entity.getEmail(), entity.getFirstName(), entity.getLastName(), entity.getAddress(), entity.getPhoneNum());
+		UserProfileDTO dto = new UserProfileDTO(entity.getEmail(), entity.getFirstName(), entity.getLastName(),entity.getPhoneNum());
 		return dto;
 	}
+
+public static UserProfile convertToUserProfile(UserProfileDTO dto) {
+	UserProfile entity = new UserProfile(dto.getEmail(), dto.getFirstName(), dto.getLastName(),dto.getPhoneNum());
+	return entity;
+}
 	
 }
